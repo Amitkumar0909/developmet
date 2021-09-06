@@ -1,0 +1,49 @@
+﻿@model Student.Models.Student
+@{
+    ViewBag.Title = "AddStudent";
+}
+@using (Html.BeginForm("AddStudent", "Student", FormMethod.Post))
+{
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <label>Name<span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    <span class="messages"></span>
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <label>Email</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <label>Mobile</label>
+                    @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Mobile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12 col-md-6">
+                    <br />
+                    <input type="submit" value="Save" class="btn btn-success" />
+                    <a href="@Url.Action("index","Student")" class="btn btn-danger">CANCEL</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 col-md-6" style="color:green">
+                    @TempData["ERROR"]
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

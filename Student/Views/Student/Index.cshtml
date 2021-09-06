@@ -1,0 +1,79 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Student.Models.Student>
+
+<br />
+@using (Html.BeginForm("index", "Student", FormMethod.Get))
+{
+    <p>
+        <b>Search By:</b>
+        @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<div class="row">
+    <div class="alert-success">@TempData["SUCCESS"]</div>
+    <div class="col-md-12 text-right">
+        <a href="@Url.Action("AddStudent","Student")" class="btn btn-danger">Add New</a>
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>S.NO</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int index = 0;}
+        @foreach (var item in Model)
+        {
+            index++;
+            <tr>
+                <td>@index</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Mobile</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditStudent", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "DeleteStd", new { Id = item.ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+    <div class="pagedList">
+        @Html.PagedListPager(Model, page => Url.Action("index", "Student", new { page }),
+    PagedListRenderOptions.PageNumbersOnly/*MinimalWithPageCountText*/)
+    </div>
+
+@*<div class="pagination" style="margin-left: 400px">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

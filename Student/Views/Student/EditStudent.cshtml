@@ -1,0 +1,47 @@
+﻿@model Student.Models.Student
+@{
+    ViewBag.Title = "EditStudent";
+}
+@using (Html.BeginForm("EditStudent", "Student", FormMethod.Post))
+{
+    <br />
+    <div class="container">
+        <div>@TempData["ERROR"]</div>
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    @Html.HiddenFor(x => x.ID)
+                </div>
+                <div class="col-md-6">
+                    <label>Name<span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    <span class="messages"></span>
+                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6">
+                    <label>Email</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <label>Mobile</label>
+                    @Html.TextBoxFor(x => x.Mobile, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Mobile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 col-md-6">
+                    <br />
+                    <input type="submit" value="Update" class="btn btn-success" />
+                    <a href='@Url.Action("index","Student")' class="btn btn-danger">CANCEL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
